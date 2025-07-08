@@ -9,7 +9,7 @@ public class SaveSystem : MonoBehaviour
 
     public PatientData patientData;
     public MultiPatientData multiPatientData;
-    
+
     public int index; // index
     public int selectedIndex; // selected block(patient) index
 
@@ -34,7 +34,7 @@ public class SaveSystem : MonoBehaviour
     public int GetIndex()
     {
         Debug.Log(multiPatientData.patientData.Count);
-        return multiPatientData.patientData.Count-1;
+        return multiPatientData.patientData.Count - 1;
     }
 
     public void SavePatiendData()

@@ -36,10 +36,22 @@ public class UniversalCalendarPopUp : MonoBehaviour {
 
     private Action<DateTime> m_clientAction;
     private bool _isInitialized;
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Android Back Button
+        {
+            if (parentDisplay.activeSelf)
+            {
+                HidePopUps();
+            }
+        }
+    }
 
 	private void OnEnable()
-	{
-        if (Instance == null) {
+    {
+        if (Instance == null)
+        {
             Instance = this;
         }
         btnNextMonth.onClick.AddListener(DisplayNextMonth);

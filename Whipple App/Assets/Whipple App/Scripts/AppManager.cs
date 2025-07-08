@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using UnityEngine.Networking;
 
 public class AppManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class AppManager : MonoBehaviour
     [SerializeField] private TMP_InputField patientUIDInput;
     [SerializeField] private GameObject trackerWindow;
     [SerializeField] private GameObject faqScreen;
+    [SerializeField] private GameObject backButton;
     [SerializeField] private Animator dots3ScreenAnimator;
 
     [Space]
@@ -82,7 +84,12 @@ public class AppManager : MonoBehaviour
     private string date;
 
     public static AppManager Instance;
-    public void Awake() => Instance = this;
+    public void Awake()
+    {
+        Instance = this;
+        Application.targetFrameRate = 60;
+        Screen.fullScreen = false;
+    }
 
     public void Start()
     {
@@ -106,13 +113,15 @@ public class AppManager : MonoBehaviour
                 Call(ObjectEnabler(trackerWindow, 3.75f));
             }
 
-
+            backButton.SetActive(false);
         }
         else if (PlayerPrefs.GetInt(PlayerPrefsManager.Role, 0) == 2)
         {
             role = Role.Nurse;
 
             Call(ObjectEnabler(nursePanel, 3.75f));
+
+            backButton.SetActive(true);
 
             SaveSystem.Instance.LoadPatientDatabase();
         }
@@ -205,6 +214,10 @@ public class AppManager : MonoBehaviour
 
             AddPatientSegment(name, age, uid, i);
 
+            multiPatientNameInput.text = "";
+            multiPatientAgeInput.text = "";
+            multiPatientUIDInput.text = "";
+
             Call(ObjectDisabler(addMultiPatientWindow, 0f));
         }
 
@@ -248,6 +261,8 @@ public class AppManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(PlayerPrefsManager.Role, 1); // 1 - Patient
 
+            backButton.SetActive(false);
+
             Call(ObjectDisabler(patientNursePanel, 0f));
             Call(ObjectEnabler(patientPanel, .1f));
             Call(ObjectEnabler(addPatientWindow, .1f));
@@ -255,15 +270,15 @@ public class AppManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt(PlayerPrefsManager.Role, 2); // 2 - Nurse
+
+            backButton.SetActive(true);
+
             Call(ObjectDisabler(patientNursePanel, 0f));
             Call(ObjectEnabler(nursePanel, .1f));
         }
     }
     public void AddDietBlock()
     {
-        if (breakfastInput.text == "" || lunchInput.text == "" || dinnerInput.text == "")
-            return;
-
         if (role == Role.Nurse)
         {
             SaveSystem.Instance.multiPatientData.patientData[SaveSystem.Instance.selectedIndex].AddDiet(date, breakfastInput.text, lunchInput.text, dinnerInput.text);
@@ -288,9 +303,6 @@ public class AppManager : MonoBehaviour
     }
     public void AddPhysioBlock()
     {
-        if (morningInput_Band.text == "" || morningInput_Spiro.text == "" || afternoonInput_Band.text == "" || afternoonInput_Spiro.text == "" || eveningInput_Band.text == "" || eveningInput_Spiro.text == "")
-            return;
-
         if (role == Role.Nurse)
         {
             SaveSystem.Instance.multiPatientData.patientData[SaveSystem.Instance.selectedIndex].AddPhysio(date, morningInput_Band.text, morningInput_Spiro.text, afternoonInput_Band.text, afternoonInput_Spiro.text, eveningInput_Band.text, eveningInput_Spiro.text);
@@ -340,4 +352,46 @@ public class AppManager : MonoBehaviour
             DestroyImmediate(excercisePanel.GetChild(0).gameObject);
         }
     }
+
+    private string apiUrl = "https://www.convertcsv.io/api/v1/json2csv";
+    private string authToken = "24b81b83c136f826409ff8f062f2672a03f53abe";
+
+    public void ExportData()
+    {
+        StartCoroutine(UploadJSONFile());
+    }
+
+    IEnumerator UploadJSONFile()
+    {
+        string filePath = Application.persistentDataPath + "/patientsDatabase.json";
+
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError("JSON file not found at: " + filePath);
+            yield break;
+        }
+
+        byte[] fileData = File.ReadAllBytes(filePath);
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("infile", fileData, "data.json", "application/json");
+
+        UnityWebRequest request = UnityWebRequest.Post(apiUrl, form);
+        request.SetRequestHeader("Authorization", "Token " + authToken);
+
+        string outputFilePath = Path.Combine(Application.persistentDataPath, "output.csv");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error uploading JSON: " + request.error);
+        }
+        else
+        {
+            File.WriteAllText(outputFilePath, request.downloadHandler.text);
+            Debug.Log("CSV saved to: " + outputFilePath);
+            Application.OpenURL(outputFilePath);
+        }
+    }
+
 }
