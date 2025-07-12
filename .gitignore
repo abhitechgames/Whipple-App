@@ -12,6 +12,13 @@
 [Uu]ser[Ss]ettings/
 *.log
 
+Whipple App/Assets/Plugins/
+Whipple App/Assets/Firebase/
+Whipple App/Assets/Editor Default Resources/
+Whipple App/Assets/ExternalDependencyManager/
+Whipple App/Assets/GeneratedLocalRepo/
+
+
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1
 *.blend1.meta
@@ -83,3 +90,10 @@ crashlytics-build.properties
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+Whipple App/Assets/google-services.json.meta
+Whipple App/Assets/google-services.json
+Whipple App/Assets/GeneratedLocalRepo.meta
+Whipple App/Assets/Firebase.meta
+Whipple App/Assets/ExternalDependencyManager.meta
+Whipple App/Assets/Editor Default Resources.meta
+Whipple App/Assets/Plugins.meta

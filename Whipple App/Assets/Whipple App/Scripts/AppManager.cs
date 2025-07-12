@@ -81,6 +81,10 @@ public class AppManager : MonoBehaviour
     [SerializeField] private TMP_InputField afternoonInput_Band;
     [SerializeField] private TMP_InputField afternoonInput_Spiro;
 
+    [Header("FILE LOCATION")]
+    [SerializeField] private GameObject fileLocationBlock;
+    [SerializeField] private TMP_Text fileLocationText;
+
     private string date;
 
     public static AppManager Instance;
@@ -359,6 +363,8 @@ public class AppManager : MonoBehaviour
     public void ExportData()
     {
         StartCoroutine(UploadJSONFile());
+
+        StartCoroutine(FileLocationBlock());
     }
 
     IEnumerator UploadJSONFile()
@@ -392,6 +398,22 @@ public class AppManager : MonoBehaviour
             Debug.Log("CSV saved to: " + outputFilePath);
             Application.OpenURL(outputFilePath);
         }
+    }
+
+    IEnumerator FileLocationBlock ( )
+    {
+        yield return new WaitForSeconds (0f);
+
+        if (role == Role.Patient)
+        fileLocationText.text = Application.persistentDataPath + "/" + PlayerPrefs.GetString(PlayerPrefsManager.PatientUID) + ".json";
+        else
+        fileLocationText.text = Application.persistentDataPath + "/patientsDatabase.json";
+
+        
+        fileLocationBlock.SetActive(true);
+
+        yield return new WaitForSeconds (4f);
+        fileLocationBlock.SetActive(false);
     }
 
 }

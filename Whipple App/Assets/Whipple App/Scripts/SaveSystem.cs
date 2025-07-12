@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Firebase.Database;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SaveSystem : MonoBehaviour
     public int index; // index
     public int selectedIndex; // selected block(patient) index
 
+    private DatabaseReference databaseReference;
 
     private void Start()
     {
@@ -29,11 +31,12 @@ public class SaveSystem : MonoBehaviour
         {
 
         }
+
+        databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
     public int GetIndex()
     {
-        Debug.Log(multiPatientData.patientData.Count);
         return multiPatientData.patientData.Count - 1;
     }
 
@@ -43,14 +46,18 @@ public class SaveSystem : MonoBehaviour
         int age = PlayerPrefs.GetInt(PlayerPrefsManager.PatientAge);
         string uid = PlayerPrefs.GetString(PlayerPrefsManager.PatientUID);
 
-        patientData.patientName = name;
-        patientData.patientAge = age;
-        patientData.patientUID = uid;
+        patientData._patientName = name;
+        patientData._patientAge = age;
+        patientData._patientUID = uid;
 
         string data = JsonUtility.ToJson(patientData);
         string filePath = Application.persistentDataPath + "/" + uid + ".json";
         System.IO.File.WriteAllText(filePath, data);
 
+        string json = JsonUtility.ToJson(patientData);
+        databaseReference.Child("users").Child(patientData._patientName + " (UID: " + patientData._patientUID + ")").SetRawJsonValueAsync(json);
+
+        Debug.Log("<color=#ff0000><b>Data Saved</b></color>");
         Debug.Log(filePath);
         Debug.Log(data);
     }
@@ -69,11 +76,11 @@ public class SaveSystem : MonoBehaviour
 
         foreach (var dietData in patientData.dietData)
         {
-            AppManager.Instance.AddDietSegment(dietData.date, dietData.breakfast, dietData.lunch, dietData.dinner);
+            AppManager.Instance.AddDietSegment(dietData._date, dietData.breakfast, dietData.lunch, dietData.dinner);
         }
         foreach (var physioData in patientData.physioData)
         {
-            AppManager.Instance.AddPhysioSegment(physioData.date, physioData.morning_band, physioData.morning_spiro, physioData.afternoon_band, physioData.afternoon_spiro, physioData.evening_band, physioData.evening_spiro);
+            AppManager.Instance.AddPhysioSegment(physioData._date, physioData.morning_band, physioData.morning_spiro, physioData.afternoon_band, physioData.afternoon_spiro, physioData.evening_band, physioData.evening_spiro);
         }
     }
 
@@ -89,7 +96,7 @@ public class SaveSystem : MonoBehaviour
 
         for (int i = 0; i < multiPatientData.patientData.Count; i++)
         {
-            AppManager.Instance.AddPatientSegment(multiPatientData.patientData[i].patientName, multiPatientData.patientData[i].patientAge.ToString(), multiPatientData.patientData[i].patientUID, i);
+            AppManager.Instance.AddPatientSegment(multiPatientData.patientData[i]._patientName, multiPatientData.patientData[i]._patientAge.ToString(), multiPatientData.patientData[i]._patientUID, i);
 
             index = i;
         }
@@ -103,21 +110,33 @@ public class SaveSystem : MonoBehaviour
 
         foreach (var dietData in multiPatientData.patientData[selectedIndex].dietData)
         {
-            AppManager.Instance.AddDietSegment(dietData.date, dietData.breakfast, dietData.lunch, dietData.dinner);
+            AppManager.Instance.AddDietSegment(dietData._date, dietData.breakfast, dietData.lunch, dietData.dinner);
         }
         foreach (var physioData in multiPatientData.patientData[selectedIndex].physioData)
         {
-            AppManager.Instance.AddPhysioSegment(physioData.date, physioData.morning_band, physioData.morning_spiro, physioData.afternoon_band, physioData.afternoon_spiro, physioData.evening_band, physioData.evening_spiro);
+            AppManager.Instance.AddPhysioSegment(physioData._date, physioData.morning_band, physioData.morning_spiro, physioData.afternoon_band, physioData.afternoon_spiro, physioData.evening_band, physioData.evening_spiro);
         }
     }
 
     public void SaveMultiPatientData()
     {
+        int NurseCode = PlayerPrefs.GetInt("NurseCode", 0);
+
+        if (NurseCode == 0)
+        {
+            NurseCode = Random.Range(1000, 10000);
+            PlayerPrefs.SetInt("NurseCode", NurseCode);
+        }
+
         string data = JsonUtility.ToJson(multiPatientData);
         string filePath = Application.persistentDataPath + "/patientsDatabase.json";
 
         System.IO.File.WriteAllText(filePath, data);
 
+        string json = JsonUtility.ToJson(multiPatientData);
+        databaseReference.Child("users").Child("Patient Database" + " (UID : " + NurseCode + ")").SetRawJsonValueAsync(json);
+
+        Debug.Log("<color=#ff0000><b>Data Saved</b></color>");
         Debug.Log("Loaded File: " + filePath);
         Debug.Log("Data: " + data);
     }
@@ -126,9 +145,9 @@ public class SaveSystem : MonoBehaviour
     {
         PatientData patientData = new PatientData();
 
-        patientData.patientName = name;
-        patientData.patientAge = age;
-        patientData.patientUID = uid;
+        patientData._patientName = name;
+        patientData._patientAge = age;
+        patientData._patientUID = uid;
 
         multiPatientData.patientData.Add(patientData);
 
@@ -154,9 +173,9 @@ public class MultiPatientData
 [System.Serializable]
 public class PatientData
 {
-    public string patientName;
-    public int patientAge;
-    public string patientUID;
+    public string _patientName;
+    public int _patientAge;
+    public string _patientUID;
     public List<DietData> dietData = new List<DietData>();
     public List<PhysioData> physioData = new List<PhysioData>();
 
@@ -173,14 +192,14 @@ public class PatientData
 [System.Serializable]
 public class DietData
 {
-    public string date;
+    public string _date;
     public string breakfast;
     public string lunch;
     public string dinner;
 
     public DietData(string d, string b, string l, string di)
     {
-        date = d;
+        _date = d;
         breakfast = b;
         lunch = l;
         dinner = di;
@@ -190,7 +209,7 @@ public class DietData
 [System.Serializable]
 public class PhysioData
 {
-    public string date;
+    public string _date;
     public string morning_band;
     public string morning_spiro;
     public string afternoon_band;
@@ -200,7 +219,7 @@ public class PhysioData
 
     public PhysioData(string d, string mb, string ms, string ab, string aS, string eb, string es)
     {
-        date = d;
+        _date = d;
         morning_band = mb;
         morning_spiro = ms;
         afternoon_band = ab;
