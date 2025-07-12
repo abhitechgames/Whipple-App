@@ -80,7 +80,7 @@ To enable features like data logging, real-time updates, and patient record sync
 
 - Connect your Android device (ensure **Developer Mode** is enabled)
 - In Unity:
-  - Go to `File > Build Settings > Android > Build and Run`
+  - Go to `File > Build Settings > Android > Build`
 
 ---
 
