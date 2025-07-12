@@ -88,3 +88,4 @@ To enable features like data logging, real-time updates, and patient record sync
 
 - Email us at: **preparewhipple@gmail.com**
 
+**Thank you!**
