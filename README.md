@@ -6,20 +6,20 @@
 
 ---
 
-## 📦 Project Setup Instructions
+### 📦 Project Setup Instructions
 
 Follow these steps to download, configure, and run the PREPARE app in Unity.
 
 ---
 
 
-### 1. Clone the Repository
+#### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/abhitechgames/prepare-whipple.git
 ```
 
-### 2. Open the Project in Unity
+#### 2. Open the Project in Unity
 
 - Open Unity Hub
 - Click **Add** and select the cloned project folder
@@ -28,17 +28,17 @@ git clone https://github.com/abhitechgames/prepare-whipple.git
 
 ---
 
-### 3. Firebase Setup
+#### 3. Firebase Setup
 
 To enable features like data logging, real-time updates, and patient record sync, the app uses **Firebase Realtime Database**.
 
-#### ✅ Create a Firebase Project
+##### ✅ Create a Firebase Project
 
 - Go to: https://console.firebase.google.com
 - Click **"Add Project"**
 - Follow the prompts and finish project creation
 
-#### 🔧 Add Firebase to Your Unity Android Project
+##### 🔧 Add Firebase to Your Unity Android Project
 
 **In Firebase Console:**
 - Click **"Add App" → Android**
@@ -49,22 +49,16 @@ To enable features like data logging, real-time updates, and patient record sync
 - Place `google-services.json` in `Assets/`
 - Install the **Firebase Unity SDK** (from https://firebase.google.com/docs/unity/setup)
 - Import these packages:
-  - FirebaseApp
   - FirebaseDatabase
-
-**In Unity → Edit > Project Settings > Player > Android:**
-- Set your package name to match the one used in Firebase
-- Enable **Internet Access** in Android settings
 
 ---
 
-### 4. Enable Realtime Database
+#### 4. Enable Realtime Database
 
 **In Firebase Console:**
 - Go to **Build > Realtime Database**
 - Click **Create Database**
-- Choose location and click **Start in test mode**
-  (You can later update the security rules)
+- Go to rules and set **Read** and **Write** to **True**
 
 - Copy your Firebase Realtime Database URL
 
@@ -73,7 +67,7 @@ To enable features like data logging, real-time updates, and patient record sync
 
 ---
 
-### 5. Build & Run
+#### 5. Build & Run
 
 - Connect your Android device (ensure **Developer Mode** is enabled)
 - In Unity:
@@ -81,7 +75,7 @@ To enable features like data logging, real-time updates, and patient record sync
 
 ---
 
-### 📩 Questions or Support?
+#### 📩 Questions or Support?
 
 - Email us at: **preparewhipple@gmail.com**
 
