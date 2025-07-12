@@ -38,12 +38,21 @@ To enable features like data logging, real-time updates, and patient record sync
 - Click **"Add Project"**
 - Follow the prompts and finish project creation
 
+  <img width="220" height="190" alt="image" src="https://github.com/user-attachments/assets/eb99bc67-c5b8-4669-99fa-5441c3d5abee" />
+
 ##### 🔧 Add Firebase to Your Unity Android Project
 
 **In Firebase Console:**
-- Click **"Add App" → Android**
+- Click **"Add App" → Unity Project**
 - Enter your Unity Android package name (e.g., `com.yourcompany.prepare`)
 - Download the `google-services.json` file
+
+  <img width="531" height="257" alt="image" src="https://github.com/user-attachments/assets/c2be37be-3f3c-473c-9f77-ee45d1fae24c" />
+  <img width="178" height="93" alt="image" src="https://github.com/user-attachments/assets/d980c456-3da3-404a-8d11-2071a57fbb1f" />
+  <img width="775" height="495" alt="image" src="https://github.com/user-attachments/assets/497fcbdb-0b5d-43d5-858b-a06f5838043c" />
+  <img width="712" height="742" alt="image" src="https://github.com/user-attachments/assets/063dd457-f194-42a9-a36d-2ec095918371" />
+  <img width="1222" height="318" alt="image" src="https://github.com/user-attachments/assets/cd714ab6-3ccd-4284-b942-43d873d76868" />
+
 
 **In Unity:**
 - Place `google-services.json` in `Assets/`
@@ -60,10 +69,10 @@ To enable features like data logging, real-time updates, and patient record sync
 - Click **Create Database**
 - Go to rules and set **Read** and **Write** to **True**
 
-- Copy your Firebase Realtime Database URL
+  <img width="314" height="672" alt="image" src="https://github.com/user-attachments/assets/6cab165c-3598-423f-b592-ac4934936079" />
+  <img width="539" height="467" alt="image" src="https://github.com/user-attachments/assets/f5a6fa30-233d-4fbd-b0fe-b40d619ab16c" />
+  <img width="1042" height="465" alt="image" src="https://github.com/user-attachments/assets/fee38f96-49fe-4051-abb2-c6fc3028e30d" />
 
-**In Unity:**
-- Use this URL while initializing or accessing Firebase
 
 ---
 
