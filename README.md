@@ -1,13 +1,9 @@
-# PREPARE - The Whipple Surgery Companion App
-
+# Prepare - Whipple
+### The Whipple Surgery Companion App
 **PREPARE** is a Unity-based mobile health app designed to support patients undergoing the Whipple procedure (pancreaticoduodenectomy). The app helps users track daily vitals, log exercises, manage pre-surgery routines, and get educated with easy-to-understand resources.
 
 
-
-<a href = "https://abhitechgames.itch.io/prepare-whipple"><img width="90" height="90" alt="pancreas" src="https://github.com/user-attachments/assets/a70a4330-4eb7-42c8-b711-57889587e268"/>
-
-### PREPARE
-</a>
+<a href = "https://abhitechgames.itch.io/prepare-whipple"><img width="90" height="90" alt="pancreas" src="https://github.com/user-attachments/assets/a70a4330-4eb7-42c8-b711-57889587e268"/></a>
 
 ---
 
