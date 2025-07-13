@@ -1,10 +1,10 @@
-# PREPARE - The Whipple Surgery Companion App
-
+# Prepare - Whipple
+### The Whipple Surgery Companion App
 **PREPARE** is a Unity-based mobile health app designed to support patients undergoing the Whipple procedure (pancreaticoduodenectomy). The app helps users track daily vitals, log exercises, manage pre-surgery routines, and get educated with easy-to-understand resources.
 
-<img width="90" height="90" alt="pancreas" src="https://github.com/user-attachments/assets/a70a4330-4eb7-42c8-b711-57889587e268"/>
 
-#### PREPARE
+<a href = "https://abhitechgames.itch.io/prepare-whipple"><img width="90" height="90" alt="pancreas" src="https://github.com/user-attachments/assets/a70a4330-4eb7-42c8-b711-57889587e268"/></a>
+
 ---
 
 ### 📦 Project Setup Instructions
@@ -68,10 +68,9 @@ To enable features like data logging, real-time updates, and patient record sync
 **In Firebase Console:**
 - Go to **Build > Realtime Database**
 - Click **Create Database**
-- Go to rules and set **Read** and **Write** to **True**
+- Go to rules and set **Read** and **Write** to **True** & publish the changes.
 
   <img width="314" height="672" alt="image" src="https://github.com/user-attachments/assets/6cab165c-3598-423f-b592-ac4934936079" />
-  <img width="539" height="467" alt="image" src="https://github.com/user-attachments/assets/f5a6fa30-233d-4fbd-b0fe-b40d619ab16c" />
   <img width="1042" height="465" alt="image" src="https://github.com/user-attachments/assets/fee38f96-49fe-4051-abb2-c6fc3028e30d" />
 
 
