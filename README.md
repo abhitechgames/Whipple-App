@@ -72,7 +72,7 @@ To enable features like data logging, real-time updates, and patient record sync
 **In Firebase Console:**
 - Go to **Build > Realtime Database**
 - Click **Create Database**
-- Go to rules and set **Read** and **Write** to **True**
+- Go to rules and set **Read** and **Write** to **True** & publish the changes.
 
   <img width="314" height="672" alt="image" src="https://github.com/user-attachments/assets/6cab165c-3598-423f-b592-ac4934936079" />
   <img width="1042" height="465" alt="image" src="https://github.com/user-attachments/assets/fee38f96-49fe-4051-abb2-c6fc3028e30d" />
