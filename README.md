@@ -88,4 +88,8 @@ To enable features like data logging, real-time updates, and patient record sync
 
 - Email us at: **preparewhipple@gmail.com**
 
+---
+
+I made this app (though I'm a game dev) to help pancreatic cancer patients and their caretakers - track daily activities like Diet and Physio before a major surgery like the Whipple Procedure (pancreaticoduodenectomy) - my fatherfigure uncle recently got diagnosed with Pancreatic Ductal Adenocarcinoma in April 2025, he went through the Whipple Procedure on July 4th, 2025, please keep him in your good wishes and prayers...
+
 **Thank you!**
