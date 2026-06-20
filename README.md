@@ -95,9 +95,9 @@ I made this app (though I'm a game dev) to help pancreatic cancer patients and t
 My fatherfigure uncle recently got diagnosed with Pancreatic Ductal Adenocarcinoma in April 2025, he went through the Whipple Procedure on July 4th, 2025.
 
 Edit:
-My uncle passed away on 28th May, 2026 at just 48 years old, within a year of undergoing the Whipple Procedure. I still cannot believe it.
+My uncle passed away on 28th May, 2026 at just 48 years old.
 
-He always took great care of his health - regular walks, exercise, and a disciplined lifestyle. Some of my favorite memories are the rides with him to the market to buy groceries for the household. He was also the reason I learned how to ride a bike. My father was always against me riding one.
+He always took great care of his health through regular walks, exercise & a disciplined lifestyle - which made the diagnosis even harder to accept. Some of my best memories are going to the market with him to bring groceries for the family. He was also the one who taught me how to ride a bike.
 
 please keep him in your good wishes and prayers...
 
