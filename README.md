@@ -89,13 +89,13 @@ To enable features like data logging, real-time updates, and patient record sync
 - Email us at: **preparewhipple@gmail.com**
 
 ---
-
+#### Personal Note:
 I made this app (though I'm a game dev) to help pancreatic cancer patients and their caretakers - track daily activities like Diet and Physio before a major surgery like the Whipple Procedure (pancreaticoduodenectomy)
 
 My fatherfigure uncle recently got diagnosed with Pancreatic Ductal Adenocarcinoma in April 2025, he went through the Whipple Procedure on July 4th, 2025.
 
 Edit:
-My father-figure uncle passed away yesterday (28th May, 2026) at just 48 years old, within a year of undergoing the Whipple Procedure. I still cannot believe it.
+My uncle passed away on 28th May, 2026 at just 48 years old, within a year of undergoing the Whipple Procedure. I still cannot believe it.
 
 He always took great care of his health - regular walks, exercise, and a disciplined lifestyle. Some of my favorite memories are the rides with him to the market to buy groceries for the household. He was also the reason I learned how to ride a bike. My father was always against me riding one.
 
